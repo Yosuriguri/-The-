@@ -1,304 +1,351 @@
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>25.08 신상품 교육: The퍼스트건강보험</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <style>
-        /* CORE DESIGN PRINCIPLES */
-        * { box-sizing: border-box; }
-        body { background-color: #1e293b; display: grid; gap: 40px; grid-template-columns: 1fr; margin: 0; padding: 40px 0; min-height: 100vh; place-items: center; }
+import React, { useState } from 'react';
+import { ChevronLeft, ChevronRight, ShieldCheck, HeartPulse, Wallet, Star, CheckCircle2, AlertCircle, TrendingUp, Users } from 'lucide-react';
+
+const App = () => {
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  const slides = [
+    // Slide 1: Title
+    {
+      title: "삼성생명 The퍼스트건강보험(2508)",
+      subtitle: "(무배당, 무해약환급금형) 상품 제안서",
+      content: (
+        <div className="flex flex-col items-center justify-center h-full text-center">
+          <div className="bg-blue-600 text-white px-6 py-2 rounded-full mb-8 font-bold animate-bounce">
+            2025년 08월 개정 신상품
+          </div>
+          <h1 className="text-5xl font-extrabold text-slate-900 mb-4 leading-tight">
+            건강보험의 새로운 기준<br/>
+            <span className="text-blue-600">The 퍼스트</span>로 시작하십시오
+          </h1>
+          <p className="text-xl text-slate-600 mb-12">합리적인 보험료로 누리는 빈틈없는 보장 솔루션</p>
+          <div className="w-24 h-1 bg-blue-600 mb-8"></div>
+          <p className="text-lg font-medium text-slate-500">삼성생명 상품교육팀</p>
+        </div>
+      ),
+      bg: "bg-slate-50"
+    },
+    // Slide 2: Market Background
+    {
+      title: "왜 다시 '건강보험'인가?",
+      subtitle: "변화하는 환경, 더 커지는 의료비 부담",
+      content: (
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 h-full items-center">
+          <div className="space-y-6">
+            <div className="bg-white p-6 rounded-2xl shadow-sm border-l-4 border-red-500">
+              <h4 className="font-bold text-lg mb-2 flex items-center gap-2">
+                <AlertCircle className="text-red-500" /> 의료비 인플레이션
+              </h4>
+              <p className="text-slate-600">신기술 의료 장비 및 고가 약제 도입으로 인한 치료비 급증</p>
+            </div>
+            <div className="bg-white p-6 rounded-2xl shadow-sm border-l-4 border-orange-500">
+              <h4 className="font-bold text-lg mb-2 flex items-center gap-2">
+                <TrendingUp className="text-orange-500" /> 유병장수 시대
+              </h4>
+              <p className="text-slate-600">질병과 함께 살아가는 기간이 길어짐에 따라 지속적인 관리 비용 발생</p>
+            </div>
+          </div>
+          <div className="bg-blue-900 rounded-3xl p-8 text-white relative overflow-hidden h-full flex flex-col justify-center">
+            <div className="relative z-10">
+              <h3 className="text-2xl font-bold mb-4">고객의 고민:</h3>
+              <ul className="space-y-4">
+                <li className="flex items-start gap-2">
+                  <CheckCircle2 className="text-blue-300 shrink-0 mt-1" size={20} />
+                  <span>"보험료는 부담 없었으면 좋겠어요"</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <CheckCircle2 className="text-blue-300 shrink-0 mt-1" size={20} />
+                  <span>"큰 병(암, 뇌, 심장)은 확실히 보장받고 싶어요"</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <CheckCircle2 className="text-blue-300 shrink-0 mt-1" size={20} />
+                  <span>"수술부터 입원까지 통계적으로 빈번한 보장도 필요해요"</span>
+                </li>
+              </ul>
+            </div>
+            <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-blue-800 rounded-full opacity-50"></div>
+          </div>
+        </div>
+      )
+    },
+    // Slide 3: Product Identity
+    {
+      title: "The퍼스트건강보험(2508) 핵심 특징",
+      subtitle: "삼성생명이 제안하는 세 가지 혁신",
+      content: (
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 h-full py-4">
+          <div className="bg-white p-8 rounded-3xl shadow-lg border border-slate-100 flex flex-col items-center text-center">
+            <div className="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center mb-6">
+              <Wallet className="text-blue-600" size={32} />
+            </div>
+            <h3 className="text-xl font-bold mb-4">경제적인 보험료</h3>
+            <p className="text-slate-600 leading-relaxed">
+              <strong>무해약환급금형</strong> 구조로<br/>
+              기존 대비 보험료 수준을<br/>
+              대폭 낮췄습니다.
+            </p>
+          </div>
+          <div className="bg-white p-8 rounded-3xl shadow-lg border border-slate-100 flex flex-col items-center text-center">
+            <div className="w-16 h-16 bg-red-100 rounded-2xl flex items-center justify-center mb-6">
+              <HeartPulse className="text-red-600" size={32} />
+            </div>
+            <h3 className="text-xl font-bold mb-4">3대 질병 집중보장</h3>
+            <p className="text-slate-600 leading-relaxed">
+              암, 뇌혈관, 허혈성심장질환 등<br/>
+              한국인 <strong>사망원인 상위 질병</strong>을<br/>
+              강력하게 보장합니다.
+            </p>
+          </div>
+          <div className="bg-white p-8 rounded-3xl shadow-lg border border-slate-100 flex flex-col items-center text-center">
+            <div className="w-16 h-16 bg-green-100 rounded-2xl flex items-center justify-center mb-6">
+              <ShieldCheck className="text-green-600" size={32} />
+            </div>
+            <h3 className="text-xl font-bold mb-4">맞춤형 특약 구성</h3>
+            <p className="text-slate-600 leading-relaxed">
+              입원, 수술, 간병 등<br/>
+              고객의 <strong>라이프사이클</strong>에 맞는<br/>
+              다양한 특약 선택 가능
+            </p>
+          </div>
+        </div>
+      )
+    },
+    // Slide 4: No Surrender Value
+    {
+      title: "무해약환급금형의 마법",
+      subtitle: "가성비를 극대화하는 현명한 선택",
+      content: (
+        <div className="flex flex-col h-full justify-center">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-10">
+            <div className="w-full md:w-1/2 pr-0 md:pr-8">
+              <h3 className="text-2xl font-bold mb-4 text-blue-800">동일 보장, 낮은 보험료</h3>
+              <p className="text-lg text-slate-700 leading-relaxed mb-6">
+                납입기간 중 해약환급금이 없는 대신,<br/>
+                보험료를 표준형 대비 <strong>약 20~30% 저렴</strong>하게 설계했습니다.<br/>
+                <span className="text-sm text-slate-500">* 산출 기준 및 연령에 따라 상이할 수 있음</span>
+              </p>
+              <div className="bg-blue-50 p-4 rounded-xl border-l-4 border-blue-600">
+                <p className="font-semibold italic">"해지하지 않고 끝까지 유지하실 고객님께 가장 유리한 플랜입니다!"</p>
+              </div>
+            </div>
+            <div className="w-full md:w-1/2 bg-white p-6 rounded-2xl shadow-inner border border-slate-200">
+              <div className="flex items-end gap-4 h-48 justify-center">
+                <div className="flex flex-col items-center">
+                  <div className="w-16 bg-slate-300 h-40 rounded-t-lg flex items-center justify-center text-slate-600 font-bold text-xs">표준형</div>
+                  <span className="mt-2 font-medium">100%</span>
+                </div>
+                <div className="flex flex-col items-center">
+                  <div className="w-16 bg-blue-600 h-28 rounded-t-lg flex items-center justify-center text-white font-bold text-xs animate-pulse">The퍼스트</div>
+                  <span className="mt-2 font-medium text-blue-600">약 75%</span>
+                </div>
+              </div>
+              <p className="text-center mt-6 text-sm text-slate-500">보험료 지출 부담 경감 예시</p>
+            </div>
+          </div>
+        </div>
+      )
+    },
+    // Slide 5: Major Coverage
+    {
+      title: "핵심 보장: 3대 질병 진단비",
+      subtitle: "암·뇌·심, 빈틈없는 3단계 방어막",
+      content: (
+        <div className="space-y-6 flex flex-col h-full justify-center">
+          <div className="overflow-x-auto rounded-xl shadow-sm">
+            <table className="w-full text-left">
+              <thead className="bg-slate-800 text-white">
+                <tr>
+                  <th className="p-4">구분</th>
+                  <th className="p-4">보장 내용</th>
+                  <th className="p-4">특징</th>
+                </tr>
+              </thead>
+              <tbody className="bg-white">
+                <tr className="border-b border-slate-100">
+                  <td className="p-4 font-bold text-red-600">암 진단</td>
+                  <td className="p-4 text-slate-700">일반암, 소액암, 고액암 차등 지급</td>
+                  <td className="p-4 text-slate-500">최초 1회한 보장 (유사암 제외)</td>
+                </tr>
+                <tr className="border-b border-slate-100">
+                  <td className="p-4 font-bold text-blue-600">뇌혈관 질환</td>
+                  <td className="p-4 text-slate-700">뇌출혈, 뇌졸중을 포함한 뇌혈관질환 전체</td>
+                  <td className="p-4 text-slate-500">광범위한 보장 범위 확보</td>
+                </tr>
+                <tr className="border-b border-slate-100">
+                  <td className="p-4 font-bold text-orange-600">심혈관 질환</td>
+                  <td className="p-4 text-slate-700">급성심근경색증, 허혈성심장질환 진단</td>
+                  <td className="p-4 text-slate-500">심장 관련 넓은 보장 범위 구성</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div className="bg-yellow-50 p-4 rounded-xl border border-yellow-200 flex items-start gap-3">
+            <Star className="text-yellow-500 shrink-0" size={20} />
+            <p className="text-sm text-slate-700">
+              <strong>Tip:</strong> 전이암이나 재진단암 특약을 추가하여 반복되는 위험에 대비할 수 있습니다.
+            </p>
+          </div>
+        </div>
+      )
+    },
+    // Slide 6: Surgery & Nursing
+    {
+      title: "삶의 질을 높이는 플러스 보장",
+      subtitle: "수술부터 간병인 지원까지",
+      content: (
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 h-full items-center">
+          <div className="space-y-4">
+            <h3 className="text-xl font-bold flex items-center gap-2 text-slate-800">
+              <div className="w-2 h-6 bg-blue-600 rounded-full"></div> 1-5종 수술비
+            </h3>
+            <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
+              <p className="text-slate-600 text-sm mb-4">가벼운 수술부터 큰 수술까지 규모에 따라 합리적 지급</p>
+              <ul className="text-sm space-y-2 text-slate-500">
+                <li className="flex justify-between"><span>• 1종: 치핵, 요실금 등</span> <span className="text-blue-600 font-bold">소액</span></li>
+                <li className="flex justify-between"><span>• 3종: 녹내장, 담낭절제술 등</span> <span className="text-blue-600 font-bold">중액</span></li>
+                <li className="flex justify-between"><span>• 5종: 암수술, 심장판막수술 등</span> <span className="text-blue-600 font-bold">고액</span></li>
+              </ul>
+            </div>
+          </div>
+          <div className="space-y-4">
+            <h3 className="text-xl font-bold flex items-center gap-2 text-slate-800">
+              <div className="w-2 h-6 bg-green-600 rounded-full"></div> 간병인/재가 서비스
+            </h3>
+            <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 h-full flex flex-col justify-center">
+              <p className="text-slate-700 font-medium mb-3">포스트 코로나 시대의 필수 보장</p>
+              <p className="text-slate-600 text-sm leading-relaxed">
+                입원 시 <strong>간병인 지원</strong> 또는 <strong>간병지원금</strong> 선택 가능.<br/>
+                가족의 경제적·정신적 부담을 덜어주는 '실속형' 서비스가 탑재되었습니다.
+              </p>
+            </div>
+          </div>
+        </div>
+      )
+    },
+    // Slide 7: Summary & Conclusion
+    {
+      title: "삼성생명과 함께하는 안심 내일",
+      subtitle: "지금 바로 제안하십시오",
+      content: (
+        <div className="flex flex-col items-center justify-center h-full">
+          <div className="bg-blue-900 text-white p-8 md:p-12 rounded-[3rem] shadow-2xl w-full max-w-2xl text-center">
+            <h3 className="text-3xl font-bold mb-8">The퍼스트건강보험 체크리스트</h3>
+            <div className="grid grid-cols-1 gap-4 text-left">
+              <div className="flex items-center gap-4 bg-blue-800 p-4 rounded-2xl hover:bg-blue-700 transition-colors">
+                <div className="bg-white text-blue-900 rounded-full p-1"><CheckCircle2 size={24}/></div>
+                <span className="text-lg">부담 없는 보험료 (무해약환급금형)</span>
+              </div>
+              <div className="flex items-center gap-4 bg-blue-800 p-4 rounded-2xl hover:bg-blue-700 transition-colors">
+                <div className="bg-white text-blue-900 rounded-full p-1"><CheckCircle2 size={24}/></div>
+                <span className="text-lg">강력한 3대 질병 진단 및 치료비</span>
+              </div>
+              <div className="flex items-center gap-4 bg-blue-800 p-4 rounded-2xl hover:bg-blue-700 transition-colors">
+                <div className="bg-white text-blue-900 rounded-full p-1"><CheckCircle2 size={24}/></div>
+                <span className="text-lg">믿을 수 있는 '삼성생명'의 브랜드 가치</span>
+              </div>
+            </div>
+            <button className="mt-10 bg-white text-blue-900 px-10 py-4 rounded-full font-bold text-xl hover:bg-blue-50 transition-all transform hover:scale-105 active:scale-95 shadow-lg">
+              설계 시작하기
+            </button>
+          </div>
+        </div>
+      )
+    }
+  ];
+
+  const nextSlide = () => {
+    if (currentSlide < slides.length - 1) {
+      setCurrentSlide(currentSlide + 1);
+    }
+  };
+
+  const prevSlide = () => {
+    if (currentSlide > 0) {
+      setCurrentSlide(currentSlide - 1);
+    }
+  };
+
+  return (
+    <div className="min-h-screen bg-slate-200 flex flex-col items-center justify-center p-4 font-sans text-slate-900 overflow-hidden">
+      {/* PPT Container */}
+      <div className={`w-full max-w-5xl aspect-[16/9] shadow-2xl rounded-3xl overflow-hidden flex flex-col relative transition-all duration-500 ${slides[currentSlide].bg || 'bg-white'}`}>
         
-        .slide-container {
-            background-color: #fff;
-            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
-            display: flex;
-            flex-direction: column;
-            font-family: 'Noto Sans KR', sans-serif;
-            height: 720px;
-            overflow: hidden;
-            position: relative;
-            width: 1280px;
-        }
-
-        /* HEADER & FOOTER */
-        .slide-header {
-            background-color: #00377a;
-            color: white;
-            display: flex;
-            justify-content: space-between;
-            padding: 20px 60px;
-            align-items: center;
-        }
-        .slide-header .tag {
-            background: rgba(255,255,255,0.2);
-            padding: 4px 12px;
-            border-radius: 4px;
-            font-size: 14px;
-            font-weight: 700;
-        }
-
-        .slide-content {
-            padding: 40px 60px;
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-        }
-
-        /* TYPOGRAPHY */
-        h1, h2, h3 { color: #0f172a; margin: 0; }
-        .slide-title { font-size: 42px; font-weight: 700; border-bottom: 4px solid #00377a; display: inline-block; margin-bottom: 40px; padding-bottom: 10px; }
-        
-        /* LAYOUT COMPONENTS */
-        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; height: 100%; }
-        .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-
-        .key-point-box {
-            background: #f8fafc;
-            border-left: 6px solid #00377a;
-            padding: 25px;
-            border-radius: 0 12px 12px 0;
-            margin-bottom: 20px;
-        }
-        .key-point-box h4 { margin: 0 0 10px 0; color: #00377a; font-size: 22px; }
-
-        .badge {
-            display: inline-block;
-            background: #e2e8f0;
-            color: #475569;
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-size: 14px;
-            font-weight: 700;
-            margin-bottom: 15px;
-        }
-
-        /* TABLE */
-        table { width: 100%; border-collapse: collapse; margin-top: 10px; }
-        th { background: #f1f5f9; color: #334155; padding: 15px; text-align: left; border-bottom: 2px solid #cbd5e1; }
-        td { padding: 15px; border-bottom: 1px solid #e2e8f0; font-size: 16px; }
-
-        /* DECORATIONS */
-        .highlight { color: #00377a; font-weight: 700; }
-        .danger { color: #ef4444; font-weight: 700; }
-
-        /* LECTURE SPECIFIC ELEMENTS */
-        .lecture-icon { font-size: 50px; color: #00377a; margin-bottom: 20px; }
-        .summary-footer { background: #f1f5f9; padding: 15px 60px; font-size: 14px; color: #64748b; text-align: right; }
-
-    </style>
-</head>
-<body>
-
-<!-- Slide 1: Cover -->
-<div class="slide-container">
-    <div style="background: #00377a; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; color: white; text-align: center;">
-        <div style="font-size: 24px; font-weight: 400; opacity: 0.8; margin-bottom: 20px;">[Internal Training] 2026 전문가 과정</div>
-        <h1 style="color: white; font-size: 72px; line-height: 1.2;">The퍼스트건강보험<br><span style="font-size: 48px; opacity: 0.9;">상품 심화 및 컨설팅 전략</span></h1>
-        <div style="width: 100px; height: 4px; background: white; margin: 40px auto;"></div>
-        <p style="font-size: 20px;">삼성생명 교육본부 상품개발팀</p>
-    </div>
-</div>
-
-<!-- Slide 2: Training Objectives -->
-<div class="slide-container">
-    <div class="slide-header">
-        <span class="tag">01. 학습 개요</span>
-        <span>SAMSUNG LIFE INSURANCE</span>
-    </div>
-    <div class="slide-content">
-        <h2 class="slide-title">학습 목표 및 기대효과</h2>
-        <div class="grid-2">
-            <div>
-                <div class="lecture-icon"><i class="fa-solid fa-list-check"></i></div>
-                <h3>주요 학습 내용</h3>
-                <ul style="font-size: 20px; line-height: 2; color: #334155; margin-top: 20px;">
-                    <li>상품 개발 배경 및 시장 환경 분석</li>
-                    <li>무해약환급금형 구조 및 특성 이해</li>
-                    <li>3대 질병 신규 담보 및 업계 차별점</li>
-                    <li>고객군별 맞춤형 세일즈 화법</li>
-                </ul>
-            </div>
-            <div style="background: #f8fafc; padding: 40px; border-radius: 20px;">
-                <h3 style="margin-bottom: 20px;">현장의 목소리</h3>
-                <p style="font-style: italic; color: #64748b; line-height: 1.8;">
-                    "요즘 고객들은 최첨단 항암치료에 관심이 많아요. 중입자나 로봇수술 비용을 어떻게 설명해야 할지 모르겠어요."
-                    <br><br>
-                    "저렴한 보험료를 원하면서도 보장은 꽉 찬 상품을 찾으시는데, 이 상품이 딱인가요?"
-                </p>
-            </div>
+        {/* Header */}
+        <div className="p-6 md:p-8 pb-0 flex justify-between items-start z-20">
+          <div>
+            <p className="text-blue-600 font-bold tracking-widest text-xs md:text-sm mb-1 uppercase">Samsung Life Insurance</p>
+            <h2 className="text-2xl md:text-3xl font-black text-slate-800 tracking-tight">{slides[currentSlide].title}</h2>
+            <p className="text-slate-500 font-medium text-sm md:text-base">{slides[currentSlide].subtitle}</p>
+          </div>
+          <div className="bg-slate-100 px-3 py-1 md:px-4 md:py-2 rounded-xl text-slate-400 font-mono text-xs md:text-sm">
+            {currentSlide + 1} / {slides.length}
+          </div>
         </div>
-    </div>
-</div>
 
-<!-- Slide 3: Market Trend -->
-<div class="slide-container">
-    <div class="slide-header">
-        <span class="tag">02. 시장 환경</span>
-        <span>의료 기술의 변화</span>
-    </div>
-    <div class="slide-content">
-        <h2 class="slide-title">왜 지금 'The퍼스트'인가?</h2>
-        <div class="grid-3" style="margin-top: 20px;">
-            <div class="key-point-box">
-                <h4>1. 고액 치료비 시대</h4>
-                <p>중입자치료(5천만), 카티(CAR-T)항암(3.6억) 등 <span class="highlight">비급여 고액 치료</span> 일반화</p>
-            </div>
-            <div class="key-point-box">
-                <h4>2. 가계 부담 가중</h4>
-                <p>실손보험료 갱신 부담 및 <span class="highlight">자기부담금 증가</span>로 인한 정액 담보 수요 급증</p>
-            </div>
-            <div class="key-point-box">
-                <h4>3. 가성비 니즈</h4>
-                <p>해약환급금보다 <span class="highlight">당장의 보험료 혜택</span>을 중시하는 소비 트렌드</p>
-            </div>
+        {/* Content Area */}
+        <div className="flex-1 px-8 md:px-12 py-4 overflow-hidden z-10">
+          {slides[currentSlide].content}
         </div>
-        <div style="margin-top: 40px; text-align: center;">
-            <div style="background: #eff6ff; padding: 30px; border: 1px dashed #3b82f6; border-radius: 12px;">
-                <p style="font-size: 24px; font-weight: 700; color: #1e40af;">핵심: "치료 기술은 진화하는데, 고객의 보험은 10년 전 그대로입니까?"</p>
-            </div>
-        </div>
-    </div>
-</div>
 
-<!-- Slide 4: Product Structure -->
-<div class="slide-container">
-    <div class="slide-header">
-        <span class="tag">03. 상품 구조</span>
-        <span>The퍼스트건강보험(2508)</span>
-    </div>
-    <div class="slide-content">
-        <h2 class="slide-title">상품 상세 구조 및 특성</h2>
-        <div class="grid-2">
-            <div>
-                <h3>주요 가입 조건</h3>
-                <table>
-                    <tr><th>구분</th><th>내용</th></tr>
-                    <tr><td>가입 연령</td><td>만 15세 ~ 최대 75세</td></tr>
-                    <tr><td>보험 기간</td><td>90세, 100세 만기</td></tr>
-                    <tr><td>납입 기간</td><td>10년, 15년, 20년, 30년납</td></tr>
-                    <tr><td>상품 유형</td><td><span class="highlight">무배당, 무해약환급금형</span></td></tr>
-                </table>
-            </div>
-            <div>
-                <div class="key-point-box" style="background: #fff1f2; border-color: #ef4444;">
-                    <h4 style="color: #ef4444;">반드시 숙지할 점 (Caution)</h4>
-                    <p style="font-size: 15px;">납입 기간 중 해약 시 <span class="danger">해약환급금이 없습니다.</span> 대신 표준형 대비 약 20~30% 저렴한 보험료로 압도적인 보장 크기를 설계할 수 있습니다.</p>
-                </div>
-                <div class="key-point-box" style="background: #f0fdf4; border-color: #22c55e;">
-                    <h4 style="color: #166534;">납입면제 혜택</h4>
-                    <p style="font-size: 15px;">암(유사암 제외), 뇌졸중, 급성심근경색증 진단 시 <span class="highlight">차회 이후 보험료 납입 면제</span></p>
-                </div>
-            </div>
+        {/* Navigation Arrows (Desktop) */}
+        <div className="hidden md:block">
+          <button 
+            onClick={prevSlide}
+            className={`absolute left-4 top-1/2 -translate-y-1/2 p-4 rounded-full bg-white/80 shadow-lg text-slate-400 hover:text-blue-600 hover:scale-110 transition-all z-30 ${currentSlide === 0 ? 'opacity-0 cursor-default' : 'opacity-100'}`}
+            disabled={currentSlide === 0}
+          >
+            <ChevronLeft size={32} />
+          </button>
+          <button 
+            onClick={nextSlide}
+            className={`absolute right-4 top-1/2 -translate-y-1/2 p-4 rounded-full bg-white/80 shadow-lg text-slate-400 hover:text-blue-600 hover:scale-110 transition-all z-30 ${currentSlide === slides.length - 1 ? 'opacity-0 cursor-default' : 'opacity-100'}`}
+            disabled={currentSlide === slides.length - 1}
+          >
+            <ChevronRight size={32} />
+          </button>
         </div>
-    </div>
-    <div class="summary-footer">※ 세부 급부 및 가입 한도는 해당 월 인수지침에 따름</div>
-</div>
 
-<!-- Slide 5: Core USP - Cancer -->
-<div class="slide-container">
-    <div class="slide-header">
-        <span class="tag">04. 핵심 담보</span>
-        <span>암 보장의 진화</span>
-    </div>
-    <div class="slide-content">
-        <h2 class="slide-title">첨단 항암치료 보장의 혁신</h2>
-        <div class="grid-2">
-            <div style="background: url('http://googleusercontent.com/image_collection/image_retrieval/6591786345462084421') center/cover; border-radius: 12px;"></div>
-            <div>
-                <div class="badge">USP 01</div>
-                <h3 style="margin-bottom: 20px;">"암 보험, 이제는 치료 방법의 싸움"</h3>
-                <ul style="list-style: none; padding: 0;">
-                    <li style="margin-bottom: 15px; border-bottom: 1px solid #e2e8f0; padding-bottom: 10px;">
-                        <span class="highlight">암 중입자/양성자 방사선치료</span>
-                        <p style="font-size: 15px; margin-top: 5px;">꿈의 암치료기 도입. 고액의 비급여 비용 집중 지원</p>
-                    </li>
-                    <li style="margin-bottom: 15px; border-bottom: 1px solid #e2e8f0; padding-bottom: 10px;">
-                        <span class="highlight">표적항암약물허가치료</span>
-                        <p style="font-size: 15px; margin-top: 5px;">부작용은 낮추고 생존율은 높이는 표적 치료비 강화</p>
-                    </li>
-                    <li>
-                        <span class="highlight">다빈치 로봇 수술</span>
-                        <p style="font-size: 15px; margin-top: 5px;">흉터와 회복 기간을 최소화하는 정밀 수술 지원</p>
-                    </li>
-                </ul>
-            </div>
+        {/* Footer Progress Bar */}
+        <div className="h-2 bg-slate-100 w-full flex mt-auto z-20">
+          <div 
+            className="h-full bg-blue-600 transition-all duration-500 ease-out" 
+            style={{ width: `${((currentSlide + 1) / slides.length) * 100}%` }}
+          ></div>
         </div>
-    </div>
-</div>
+      </div>
 
-<!-- Slide 6: Core USP - Heart/Brain -->
-<div class="slide-container">
-    <div class="slide-header">
-        <span class="tag">04. 핵심 담보</span>
-        <span>2대 질병 보장 범위</span>
-    </div>
-    <div class="slide-content">
-        <h2 class="slide-title">뇌·심장, '진단'에서 '수술'까지</h2>
-        <div style="display: flex; gap: 20px;">
-            <div style="flex: 1; border: 2px solid #00377a; border-radius: 12px; padding: 25px;">
-                <h3 style="text-align: center; color: #00377a; margin-bottom: 20px;">뇌혈관 질환</h3>
-                <div style="text-align: center; margin-bottom: 15px;">
-                    <span style="font-size: 14px; background: #e0f2fe; padding: 5px 10px; border-radius: 5px;">뇌출혈 < 뇌졸중 < 뇌혈관질환</span>
-                </div>
-                <ul style="font-size: 15px;">
-                    <li>뇌혈관질환 진단비 (최대 2천)</li>
-                    <li>뇌혈관질환 수술비 (매회 지급)</li>
-                    <li>혈전용해치료비 지원</li>
-                </ul>
-            </div>
-            <div style="flex: 1; border: 2px solid #00377a; border-radius: 12px; padding: 25px;">
-                <h3 style="text-align: center; color: #00377a; margin-bottom: 20px;">허혈성 심장질환</h3>
-                <div style="text-align: center; margin-bottom: 15px;">
-                    <span style="font-size: 14px; background: #e0f2fe; padding: 5px 10px; border-radius: 5px;">급성심근경색 < 허혈성심장질환</span>
-                </div>
-                <ul style="font-size: 15px;">
-                    <li>허혈성심장질환 진단비</li>
-                    <li>심장질환 수술비 (관상동맥성형 등)</li>
-                    <li>심혈관질환(특정) 진단 포함</li>
-                </ul>
-            </div>
+      {/* Controller Buttons below PPT */}
+      <div className="mt-8 flex flex-wrap justify-center gap-4 md:gap-6">
+        <button 
+          onClick={prevSlide}
+          disabled={currentSlide === 0}
+          className="bg-white px-5 py-3 rounded-xl shadow-md disabled:opacity-50 hover:bg-slate-50 transition-colors font-semibold text-slate-600 flex items-center gap-2"
+        >
+          <ChevronLeft size={20} /> 이전
+        </button>
+        <div className="flex gap-2 items-center">
+          {slides.map((_, idx) => (
+            <div 
+              key={idx} 
+              onClick={() => setCurrentSlide(idx)}
+              className={`w-3 h-3 rounded-full cursor-pointer transition-all ${idx === currentSlide ? 'bg-blue-600 w-8' : 'bg-slate-400 hover:bg-slate-500'}`}
+            />
+          ))}
         </div>
-        <p style="margin-top: 30px; text-align: center; color: #64748b;">*협심증(I20)까지 넓게 보장하는 범위 설정이 핵심 컨설팅 포인트입니다.</p>
+        <button 
+          onClick={nextSlide}
+          disabled={currentSlide === slides.length - 1}
+          className="bg-blue-600 text-white px-5 py-3 rounded-xl shadow-md disabled:opacity-50 hover:bg-blue-700 transition-colors font-semibold flex items-center gap-2"
+        >
+          다음 <ChevronRight size={20} />
+        </button>
+      </div>
+      
+      <p className="mt-6 text-slate-500 text-xs md:text-sm text-center max-w-xl px-4">
+        ※ 본 프레젠테이션은 보험 설계사의 교육 목적 및 고객 제안 보조 자료로 제작되었습니다. 자세한 사항은 반드시 약관을 참조해 주세요.
+      </p>
     </div>
-</div>
+  );
+};
 
-<!-- Slide 7: Sales Talk -->
-<div class="slide-container">
-    <div class="slide-header">
-        <span class="tag">05. 세일즈 화법</span>
-        <span>현장 적용 스크립트</span>
-    </div>
-    <div class="slide-content">
-        <h2 class="slide-title">클로징을 부르는 화법 제안</h2>
-        <div class="grid-2">
-            <div class="key-point-box">
-                <h4>기존 가입자 대상 (보장 업그레이드)</h4>
-                <p style="font-size: 18px; line-height: 1.6;">"고객님, 10년 전 가입하신 암보험은 훌륭하지만, <b>최근 나온 중입자치료나 표적항암</b>은 보장받기 어렵습니다. 기존 보험은 유지하되, 저렴한 보험료로 <b>'치료 기술의 차이'</b>만 메워보시는 건 어떨까요?"</p>
-            </div>
-            <div class="key-point-box" style="background: #f1f5f9;">
-                <h4>신규 가입자 대상 (생애 첫 보험)</h4>
-                <p style="font-size: 18px; line-height: 1.6;">"처음 준비하는 보험일수록 <b>'가장 넓은 범위'</b>를 <b>'가장 합리적인 가격'</b>에 담아야 합니다. 삼성생명의 The퍼스트는 무해약형으로 가격 거품을 빼고 보장의 폭은 업계 최대 수준으로 키웠습니다."</p>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Slide 8: Summary & Closing -->
-<div class="slide-container">
-    <div style="background: #0f172a; height: 100%; color: white; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;">
-        <h2 style="color: white; font-size: 56px; margin-bottom: 40px;">보험은 기술입니다.</h2>
-        <p style="font-size: 24px; opacity: 0.8;">The퍼스트건강보험으로<br>고객에게 가장 진보된 평온을 선물하십시오.</p>
-        <div style="margin-top: 60px; padding: 20px 40px; border: 1px solid white; border-radius: 4px;">
-            강의 종료 및 질의응답
-        </div>
-        <p style="margin-top: 40px; font-size: 14px; opacity: 0.5;">© 2026 Samsung Life Insurance Co., Ltd. All rights reserved.</p>
-    </div>
-</div>
-
-</body>
-</html>
+export default App;
