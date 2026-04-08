@@ -1,351 +1,117 @@
-import React, { useState } from 'react';
-import { ChevronLeft, ChevronRight, ShieldCheck, HeartPulse, Wallet, Star, CheckCircle2, AlertCircle, TrendingUp, Users } from 'lucide-react';
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>삼성생명 The퍼스트건강보험(2508) 제안서</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+        }
+        .slide-content {
+            transition: opacity 0.3s ease-in-out;
+        }
+        @keyframes bounce-slow {
+            0%, 100% { transform: translateY(-5%); animation-timing-function: cubic-bezier(0.8, 0, 1, 1); }
+            50% { transform: translateY(0); animation-timing-function: cubic-bezier(0, 0, 0.2, 1); }
+        }
+        .animate-bounce-slow {
+            animation: bounce-slow 2s infinite;
+        }
+    </style>
+</head>
+<body class="bg-slate-200 text-slate-900">
 
-const App = () => {
-  const [currentSlide, setCurrentSlide] = useState(0);
+    <div id="app" class="min-h-screen flex flex-col items-center justify-center p-4 overflow-hidden">
+        <!-- PPT Container -->
+        <div id="ppt-container" class="w-full max-w-5xl aspect-[16/9] shadow-2xl rounded-3xl overflow-hidden flex flex-col relative transition-all duration-500 bg-white">
+            
+            <!-- Header -->
+            <div class="p-6 md:p-8 pb-0 flex justify-between items-start z-20">
+                <div>
+                    <p class="text-blue-600 font-bold tracking-widest text-xs md:text-sm mb-1 uppercase">Samsung Life Insurance</p>
+                    <h2 id="slide-title" class="text-2xl md:text-3xl font-black text-slate-800 tracking-tight"></h2>
+                    <p id="slide-subtitle" class="text-slate-500 font-medium text-sm md:text-base"></p>
+                </div>
+                <div id="page-indicator" class="bg-slate-100 px-3 py-1 md:px-4 md:py-2 rounded-xl text-slate-400 font-mono text-xs md:text-sm">
+                </div>
+            </div>
 
-  const slides = [
-    // Slide 1: Title
-    {
-      title: "삼성생명 The퍼스트건강보험(2508)",
-      subtitle: "(무배당, 무해약환급금형) 상품 제안서",
-      content: (
-        <div className="flex flex-col items-center justify-center h-full text-center">
-          <div className="bg-blue-600 text-white px-6 py-2 rounded-full mb-8 font-bold animate-bounce">
-            2025년 08월 개정 신상품
-          </div>
-          <h1 className="text-5xl font-extrabold text-slate-900 mb-4 leading-tight">
-            건강보험의 새로운 기준<br/>
-            <span className="text-blue-600">The 퍼스트</span>로 시작하십시오
-          </h1>
-          <p className="text-xl text-slate-600 mb-12">합리적인 보험료로 누리는 빈틈없는 보장 솔루션</p>
-          <div className="w-24 h-1 bg-blue-600 mb-8"></div>
-          <p className="text-lg font-medium text-slate-500">삼성생명 상품교육팀</p>
+            <!-- Content Area -->
+            <div id="slide-content" class="flex-1 px-8 md:px-12 py-4 overflow-hidden z-10 slide-content">
+                <!-- HTML content will be injected here -->
+            </div>
+
+            <!-- Navigation Arrows (Desktop) -->
+            <div class="hidden md:block">
+                <button onclick="prevSlide()" id="prev-arrow" class="absolute left-4 top-1/2 -translate-y-1/2 p-4 rounded-full bg-white/80 shadow-lg text-slate-400 hover:text-blue-600 hover:scale-110 transition-all z-30">
+                    <i data-lucide="chevron-left" class="w-8 h-8"></i>
+                </button>
+                <button onclick="nextSlide()" id="next-arrow" class="absolute right-4 top-1/2 -translate-y-1/2 p-4 rounded-full bg-white/80 shadow-lg text-slate-400 hover:text-blue-600 hover:scale-110 transition-all z-30">
+                    <i data-lucide="chevron-right" class="w-8 h-8"></i>
+                </button>
+            </div>
+
+            <!-- Footer Progress Bar -->
+            <div class="h-2 bg-slate-100 w-full flex mt-auto z-20">
+                <div id="progress-bar" class="h-full bg-blue-600 transition-all duration-500 ease-out" style="width: 0%"></div>
+            </div>
         </div>
-      ),
-      bg: "bg-slate-50"
-    },
-    // Slide 2: Market Background
-    {
-      title: "왜 다시 '건강보험'인가?",
-      subtitle: "변화하는 환경, 더 커지는 의료비 부담",
-      content: (
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 h-full items-center">
-          <div className="space-y-6">
-            <div className="bg-white p-6 rounded-2xl shadow-sm border-l-4 border-red-500">
-              <h4 className="font-bold text-lg mb-2 flex items-center gap-2">
-                <AlertCircle className="text-red-500" /> 의료비 인플레이션
-              </h4>
-              <p className="text-slate-600">신기술 의료 장비 및 고가 약제 도입으로 인한 치료비 급증</p>
-            </div>
-            <div className="bg-white p-6 rounded-2xl shadow-sm border-l-4 border-orange-500">
-              <h4 className="font-bold text-lg mb-2 flex items-center gap-2">
-                <TrendingUp className="text-orange-500" /> 유병장수 시대
-              </h4>
-              <p className="text-slate-600">질병과 함께 살아가는 기간이 길어짐에 따라 지속적인 관리 비용 발생</p>
-            </div>
-          </div>
-          <div className="bg-blue-900 rounded-3xl p-8 text-white relative overflow-hidden h-full flex flex-col justify-center">
-            <div className="relative z-10">
-              <h3 className="text-2xl font-bold mb-4">고객의 고민:</h3>
-              <ul className="space-y-4">
-                <li className="flex items-start gap-2">
-                  <CheckCircle2 className="text-blue-300 shrink-0 mt-1" size={20} />
-                  <span>"보험료는 부담 없었으면 좋겠어요"</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <CheckCircle2 className="text-blue-300 shrink-0 mt-1" size={20} />
-                  <span>"큰 병(암, 뇌, 심장)은 확실히 보장받고 싶어요"</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <CheckCircle2 className="text-blue-300 shrink-0 mt-1" size={20} />
-                  <span>"수술부터 입원까지 통계적으로 빈번한 보장도 필요해요"</span>
-                </li>
-              </ul>
-            </div>
-            <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-blue-800 rounded-full opacity-50"></div>
-          </div>
-        </div>
-      )
-    },
-    // Slide 3: Product Identity
-    {
-      title: "The퍼스트건강보험(2508) 핵심 특징",
-      subtitle: "삼성생명이 제안하는 세 가지 혁신",
-      content: (
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 h-full py-4">
-          <div className="bg-white p-8 rounded-3xl shadow-lg border border-slate-100 flex flex-col items-center text-center">
-            <div className="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center mb-6">
-              <Wallet className="text-blue-600" size={32} />
-            </div>
-            <h3 className="text-xl font-bold mb-4">경제적인 보험료</h3>
-            <p className="text-slate-600 leading-relaxed">
-              <strong>무해약환급금형</strong> 구조로<br/>
-              기존 대비 보험료 수준을<br/>
-              대폭 낮췄습니다.
-            </p>
-          </div>
-          <div className="bg-white p-8 rounded-3xl shadow-lg border border-slate-100 flex flex-col items-center text-center">
-            <div className="w-16 h-16 bg-red-100 rounded-2xl flex items-center justify-center mb-6">
-              <HeartPulse className="text-red-600" size={32} />
-            </div>
-            <h3 className="text-xl font-bold mb-4">3대 질병 집중보장</h3>
-            <p className="text-slate-600 leading-relaxed">
-              암, 뇌혈관, 허혈성심장질환 등<br/>
-              한국인 <strong>사망원인 상위 질병</strong>을<br/>
-              강력하게 보장합니다.
-            </p>
-          </div>
-          <div className="bg-white p-8 rounded-3xl shadow-lg border border-slate-100 flex flex-col items-center text-center">
-            <div className="w-16 h-16 bg-green-100 rounded-2xl flex items-center justify-center mb-6">
-              <ShieldCheck className="text-green-600" size={32} />
-            </div>
-            <h3 className="text-xl font-bold mb-4">맞춤형 특약 구성</h3>
-            <p className="text-slate-600 leading-relaxed">
-              입원, 수술, 간병 등<br/>
-              고객의 <strong>라이프사이클</strong>에 맞는<br/>
-              다양한 특약 선택 가능
-            </p>
-          </div>
-        </div>
-      )
-    },
-    // Slide 4: No Surrender Value
-    {
-      title: "무해약환급금형의 마법",
-      subtitle: "가성비를 극대화하는 현명한 선택",
-      content: (
-        <div className="flex flex-col h-full justify-center">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-10">
-            <div className="w-full md:w-1/2 pr-0 md:pr-8">
-              <h3 className="text-2xl font-bold mb-4 text-blue-800">동일 보장, 낮은 보험료</h3>
-              <p className="text-lg text-slate-700 leading-relaxed mb-6">
-                납입기간 중 해약환급금이 없는 대신,<br/>
-                보험료를 표준형 대비 <strong>약 20~30% 저렴</strong>하게 설계했습니다.<br/>
-                <span className="text-sm text-slate-500">* 산출 기준 및 연령에 따라 상이할 수 있음</span>
-              </p>
-              <div className="bg-blue-50 p-4 rounded-xl border-l-4 border-blue-600">
-                <p className="font-semibold italic">"해지하지 않고 끝까지 유지하실 고객님께 가장 유리한 플랜입니다!"</p>
-              </div>
-            </div>
-            <div className="w-full md:w-1/2 bg-white p-6 rounded-2xl shadow-inner border border-slate-200">
-              <div className="flex items-end gap-4 h-48 justify-center">
-                <div className="flex flex-col items-center">
-                  <div className="w-16 bg-slate-300 h-40 rounded-t-lg flex items-center justify-center text-slate-600 font-bold text-xs">표준형</div>
-                  <span className="mt-2 font-medium">100%</span>
-                </div>
-                <div className="flex flex-col items-center">
-                  <div className="w-16 bg-blue-600 h-28 rounded-t-lg flex items-center justify-center text-white font-bold text-xs animate-pulse">The퍼스트</div>
-                  <span className="mt-2 font-medium text-blue-600">약 75%</span>
-                </div>
-              </div>
-              <p className="text-center mt-6 text-sm text-slate-500">보험료 지출 부담 경감 예시</p>
-            </div>
-          </div>
-        </div>
-      )
-    },
-    // Slide 5: Major Coverage
-    {
-      title: "핵심 보장: 3대 질병 진단비",
-      subtitle: "암·뇌·심, 빈틈없는 3단계 방어막",
-      content: (
-        <div className="space-y-6 flex flex-col h-full justify-center">
-          <div className="overflow-x-auto rounded-xl shadow-sm">
-            <table className="w-full text-left">
-              <thead className="bg-slate-800 text-white">
-                <tr>
-                  <th className="p-4">구분</th>
-                  <th className="p-4">보장 내용</th>
-                  <th className="p-4">특징</th>
-                </tr>
-              </thead>
-              <tbody className="bg-white">
-                <tr className="border-b border-slate-100">
-                  <td className="p-4 font-bold text-red-600">암 진단</td>
-                  <td className="p-4 text-slate-700">일반암, 소액암, 고액암 차등 지급</td>
-                  <td className="p-4 text-slate-500">최초 1회한 보장 (유사암 제외)</td>
-                </tr>
-                <tr className="border-b border-slate-100">
-                  <td className="p-4 font-bold text-blue-600">뇌혈관 질환</td>
-                  <td className="p-4 text-slate-700">뇌출혈, 뇌졸중을 포함한 뇌혈관질환 전체</td>
-                  <td className="p-4 text-slate-500">광범위한 보장 범위 확보</td>
-                </tr>
-                <tr className="border-b border-slate-100">
-                  <td className="p-4 font-bold text-orange-600">심혈관 질환</td>
-                  <td className="p-4 text-slate-700">급성심근경색증, 허혈성심장질환 진단</td>
-                  <td className="p-4 text-slate-500">심장 관련 넓은 보장 범위 구성</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          <div className="bg-yellow-50 p-4 rounded-xl border border-yellow-200 flex items-start gap-3">
-            <Star className="text-yellow-500 shrink-0" size={20} />
-            <p className="text-sm text-slate-700">
-              <strong>Tip:</strong> 전이암이나 재진단암 특약을 추가하여 반복되는 위험에 대비할 수 있습니다.
-            </p>
-          </div>
-        </div>
-      )
-    },
-    // Slide 6: Surgery & Nursing
-    {
-      title: "삶의 질을 높이는 플러스 보장",
-      subtitle: "수술부터 간병인 지원까지",
-      content: (
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 h-full items-center">
-          <div className="space-y-4">
-            <h3 className="text-xl font-bold flex items-center gap-2 text-slate-800">
-              <div className="w-2 h-6 bg-blue-600 rounded-full"></div> 1-5종 수술비
-            </h3>
-            <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
-              <p className="text-slate-600 text-sm mb-4">가벼운 수술부터 큰 수술까지 규모에 따라 합리적 지급</p>
-              <ul className="text-sm space-y-2 text-slate-500">
-                <li className="flex justify-between"><span>• 1종: 치핵, 요실금 등</span> <span className="text-blue-600 font-bold">소액</span></li>
-                <li className="flex justify-between"><span>• 3종: 녹내장, 담낭절제술 등</span> <span className="text-blue-600 font-bold">중액</span></li>
-                <li className="flex justify-between"><span>• 5종: 암수술, 심장판막수술 등</span> <span className="text-blue-600 font-bold">고액</span></li>
-              </ul>
-            </div>
-          </div>
-          <div className="space-y-4">
-            <h3 className="text-xl font-bold flex items-center gap-2 text-slate-800">
-              <div className="w-2 h-6 bg-green-600 rounded-full"></div> 간병인/재가 서비스
-            </h3>
-            <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 h-full flex flex-col justify-center">
-              <p className="text-slate-700 font-medium mb-3">포스트 코로나 시대의 필수 보장</p>
-              <p className="text-slate-600 text-sm leading-relaxed">
-                입원 시 <strong>간병인 지원</strong> 또는 <strong>간병지원금</strong> 선택 가능.<br/>
-                가족의 경제적·정신적 부담을 덜어주는 '실속형' 서비스가 탑재되었습니다.
-              </p>
-            </div>
-          </div>
-        </div>
-      )
-    },
-    // Slide 7: Summary & Conclusion
-    {
-      title: "삼성생명과 함께하는 안심 내일",
-      subtitle: "지금 바로 제안하십시오",
-      content: (
-        <div className="flex flex-col items-center justify-center h-full">
-          <div className="bg-blue-900 text-white p-8 md:p-12 rounded-[3rem] shadow-2xl w-full max-w-2xl text-center">
-            <h3 className="text-3xl font-bold mb-8">The퍼스트건강보험 체크리스트</h3>
-            <div className="grid grid-cols-1 gap-4 text-left">
-              <div className="flex items-center gap-4 bg-blue-800 p-4 rounded-2xl hover:bg-blue-700 transition-colors">
-                <div className="bg-white text-blue-900 rounded-full p-1"><CheckCircle2 size={24}/></div>
-                <span className="text-lg">부담 없는 보험료 (무해약환급금형)</span>
-              </div>
-              <div className="flex items-center gap-4 bg-blue-800 p-4 rounded-2xl hover:bg-blue-700 transition-colors">
-                <div className="bg-white text-blue-900 rounded-full p-1"><CheckCircle2 size={24}/></div>
-                <span className="text-lg">강력한 3대 질병 진단 및 치료비</span>
-              </div>
-              <div className="flex items-center gap-4 bg-blue-800 p-4 rounded-2xl hover:bg-blue-700 transition-colors">
-                <div className="bg-white text-blue-900 rounded-full p-1"><CheckCircle2 size={24}/></div>
-                <span className="text-lg">믿을 수 있는 '삼성생명'의 브랜드 가치</span>
-              </div>
-            </div>
-            <button className="mt-10 bg-white text-blue-900 px-10 py-4 rounded-full font-bold text-xl hover:bg-blue-50 transition-all transform hover:scale-105 active:scale-95 shadow-lg">
-              설계 시작하기
+
+        <!-- Controller Buttons -->
+        <div class="mt-8 flex flex-wrap justify-center gap-4 md:gap-6">
+            <button onclick="prevSlide()" id="prev-btn" class="bg-white px-5 py-3 rounded-xl shadow-md hover:bg-slate-50 transition-colors font-semibold text-slate-600 flex items-center gap-2">
+                <i data-lucide="chevron-left" class="w-5 h-5"></i> 이전
             </button>
-          </div>
+            <div id="dot-navigation" class="flex gap-2 items-center">
+                <!-- Dots will be injected here -->
+            </div>
+            <button onclick="nextSlide()" id="next-btn" class="bg-blue-600 text-white px-5 py-3 rounded-xl shadow-md hover:bg-blue-700 transition-colors font-semibold flex items-center gap-2">
+                다음 <i data-lucide="chevron-right" class="w-5 h-5"></i>
+            </button>
         </div>
-      )
-    }
-  ];
-
-  const nextSlide = () => {
-    if (currentSlide < slides.length - 1) {
-      setCurrentSlide(currentSlide + 1);
-    }
-  };
-
-  const prevSlide = () => {
-    if (currentSlide > 0) {
-      setCurrentSlide(currentSlide - 1);
-    }
-  };
-
-  return (
-    <div className="min-h-screen bg-slate-200 flex flex-col items-center justify-center p-4 font-sans text-slate-900 overflow-hidden">
-      {/* PPT Container */}
-      <div className={`w-full max-w-5xl aspect-[16/9] shadow-2xl rounded-3xl overflow-hidden flex flex-col relative transition-all duration-500 ${slides[currentSlide].bg || 'bg-white'}`}>
         
-        {/* Header */}
-        <div className="p-6 md:p-8 pb-0 flex justify-between items-start z-20">
-          <div>
-            <p className="text-blue-600 font-bold tracking-widest text-xs md:text-sm mb-1 uppercase">Samsung Life Insurance</p>
-            <h2 className="text-2xl md:text-3xl font-black text-slate-800 tracking-tight">{slides[currentSlide].title}</h2>
-            <p className="text-slate-500 font-medium text-sm md:text-base">{slides[currentSlide].subtitle}</p>
-          </div>
-          <div className="bg-slate-100 px-3 py-1 md:px-4 md:py-2 rounded-xl text-slate-400 font-mono text-xs md:text-sm">
-            {currentSlide + 1} / {slides.length}
-          </div>
-        </div>
-
-        {/* Content Area */}
-        <div className="flex-1 px-8 md:px-12 py-4 overflow-hidden z-10">
-          {slides[currentSlide].content}
-        </div>
-
-        {/* Navigation Arrows (Desktop) */}
-        <div className="hidden md:block">
-          <button 
-            onClick={prevSlide}
-            className={`absolute left-4 top-1/2 -translate-y-1/2 p-4 rounded-full bg-white/80 shadow-lg text-slate-400 hover:text-blue-600 hover:scale-110 transition-all z-30 ${currentSlide === 0 ? 'opacity-0 cursor-default' : 'opacity-100'}`}
-            disabled={currentSlide === 0}
-          >
-            <ChevronLeft size={32} />
-          </button>
-          <button 
-            onClick={nextSlide}
-            className={`absolute right-4 top-1/2 -translate-y-1/2 p-4 rounded-full bg-white/80 shadow-lg text-slate-400 hover:text-blue-600 hover:scale-110 transition-all z-30 ${currentSlide === slides.length - 1 ? 'opacity-0 cursor-default' : 'opacity-100'}`}
-            disabled={currentSlide === slides.length - 1}
-          >
-            <ChevronRight size={32} />
-          </button>
-        </div>
-
-        {/* Footer Progress Bar */}
-        <div className="h-2 bg-slate-100 w-full flex mt-auto z-20">
-          <div 
-            className="h-full bg-blue-600 transition-all duration-500 ease-out" 
-            style={{ width: `${((currentSlide + 1) / slides.length) * 100}%` }}
-          ></div>
-        </div>
-      </div>
-
-      {/* Controller Buttons below PPT */}
-      <div className="mt-8 flex flex-wrap justify-center gap-4 md:gap-6">
-        <button 
-          onClick={prevSlide}
-          disabled={currentSlide === 0}
-          className="bg-white px-5 py-3 rounded-xl shadow-md disabled:opacity-50 hover:bg-slate-50 transition-colors font-semibold text-slate-600 flex items-center gap-2"
-        >
-          <ChevronLeft size={20} /> 이전
-        </button>
-        <div className="flex gap-2 items-center">
-          {slides.map((_, idx) => (
-            <div 
-              key={idx} 
-              onClick={() => setCurrentSlide(idx)}
-              className={`w-3 h-3 rounded-full cursor-pointer transition-all ${idx === currentSlide ? 'bg-blue-600 w-8' : 'bg-slate-400 hover:bg-slate-500'}`}
-            />
-          ))}
-        </div>
-        <button 
-          onClick={nextSlide}
-          disabled={currentSlide === slides.length - 1}
-          className="bg-blue-600 text-white px-5 py-3 rounded-xl shadow-md disabled:opacity-50 hover:bg-blue-700 transition-colors font-semibold flex items-center gap-2"
-        >
-          다음 <ChevronRight size={20} />
-        </button>
-      </div>
-      
-      <p className="mt-6 text-slate-500 text-xs md:text-sm text-center max-w-xl px-4">
-        ※ 본 프레젠테이션은 보험 설계사의 교육 목적 및 고객 제안 보조 자료로 제작되었습니다. 자세한 사항은 반드시 약관을 참조해 주세요.
-      </p>
+        <p class="mt-6 text-slate-500 text-xs md:text-sm text-center max-w-xl px-4">
+            ※ 본 프레젠테이션은 보험 설계사의 교육 목적 및 고객 제안 보조 자료로 제작되었습니다. 자세한 사항은 반드시 약관을 참조해 주세요.
+        </p>
     </div>
-  );
-};
 
-export default App;
+    <script>
+        let currentSlide = 0;
+
+        const slides = [
+            {
+                title: "삼성생명 The퍼스트건강보험(2508)",
+                subtitle: "(무배당, 무해약환급금형) 상품 제안서",
+                bg: "bg-slate-50",
+                content: `
+                    <div class="flex flex-col items-center justify-center h-full text-center">
+                        <div class="bg-blue-600 text-white px-6 py-2 rounded-full mb-8 font-bold animate-bounce-slow">
+                            2025년 08월 개정 신상품
+                        </div>
+                        <h1 class="text-3xl md:text-5xl font-extrabold text-slate-900 mb-4 leading-tight">
+                            건강보험의 새로운 기준<br/>
+                            <span class="text-blue-600">The 퍼스트</span>로 시작하십시오
+                        </h1>
+                        <p class="text-lg md:text-xl text-slate-600 mb-8 md:mb-12">합리적인 보험료로 누리는 빈틈없는 보장 솔루션</p>
+                        <div class="w-24 h-1 bg-blue-600 mb-8"></div>
+                        <p class="text-base md:text-lg font-medium text-slate-500">삼성생명 상품교육팀</p>
+                    </div>
+                `
+            },
+            {
+                title: "왜 다시 '건강보험'인가?",
+                subtitle: "변화하는 환경, 더 커지는 의료비 부담",
+                content: `
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 h-full items-center">
+                        <div class="space-y-6">
+                            <div class="bg-white p-6 rounded-2xl shadow-sm border-l-4 border-red-500">
+                                <h4 class="font-bold text-lg mb-2 flex items-center gap-2">
+                                    <i data-lucide="alert-circle" class="text-red-500"></i> 의료비 인플레이션
+                                </h4>
+                                <p class="text-slate-600 text-sm">신기술 의료 장비 및 고가 약제 도입으로 인한 치료비 급증</p>
+                            </div>
+                            <div class="bg-white p-6 rounded-2xl shadow-sm border-l-4 border-orange-500">
